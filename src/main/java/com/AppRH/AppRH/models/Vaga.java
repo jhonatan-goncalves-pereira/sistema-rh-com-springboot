@@ -1,19 +1,32 @@
 package com.AppRH.AppRH.models;
 
 import java.io.Serializable;
-
-import org.springframework.data.annotation.Id;
-
+import java.util.List;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
-public class Vaga implements Serializable{
+import jakarta.validation.constraints.NotEmpty;
+
+public  class Vaga implements Serializable{
 	
-	private static final long seriaVersionId = 1L;
+	//Atributo de controle de versionamento
+	private static final long seriaVersionUId = 1L;
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long codigo;
 	
-	@GeneratedValue(strategy = GenerationType.AUTO);
+	@NotEmpty
+	private String descricao;
 	
+	@NotEmpty
+	private String data;
+	
+	@NotEmpty
+	private String salario;
 	
 }
