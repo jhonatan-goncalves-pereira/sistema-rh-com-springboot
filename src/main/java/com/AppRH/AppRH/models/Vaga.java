@@ -11,11 +11,52 @@ import jakarta.persistence.OneToMany;
 
 import jakarta.validation.constraints.NotEmpty;
 
+@Entity
 public  class Vaga implements Serializable{
 	
 	//Atributo de controle de versionamento
 	private static final long seriaVersionUId = 1L;
 	
+	public long getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(long codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
+
+	public String getSalario() {
+		return salario;
+	}
+
+	public void setSalario(String salario) {
+		this.salario = salario;
+	}
+
+	public List<Candidato> getCandidatos() {
+		return candidatos;
+	}
+
+	public void setCandidatos(List<Candidato> candidatos) {
+		this.candidatos = candidatos;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long codigo;
@@ -29,36 +70,8 @@ public  class Vaga implements Serializable{
 	@NotEmpty
 	private String salario;
 	
-	// Getters e setters
-    public long getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(long codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
-    }
-
-    public String getSalario() {
-        return salario;
-    }
-
-    public void setSalario(String salario) {
-        this.salario = salario;
-    }
+	@OneToMany(mappedBy = "vaga", cascade = CascadeType.REMOVE)
+	private List<Candidato> candidatos;
+	
+	
 }
